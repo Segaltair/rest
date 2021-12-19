@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: rest-service
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:postgresql://localhost:5555/restdb
+    type: com.zaxxer.hikari.HikariDataSource
+    dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 1
+      maximum-pool-size: 10
+      pool-name: ${spring.application.name}-pool
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase-changelog.yaml
+
+logging:
+  level:
+    ROOT: info
+    #    org.springframework: warn
+    #    org.springframework.security: warn
+    #    org.hibernate: warn
+    org.hibernate.type.descriptor.sql: trace
