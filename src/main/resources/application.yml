@@ -15,6 +15,15 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:liquibase-changelog.yaml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        default_schema: rest
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
 
 logging:
   level:

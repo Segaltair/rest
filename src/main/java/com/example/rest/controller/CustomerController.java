@@ -4,6 +4,8 @@ import com.example.rest.domain.CustomerDto;
 import com.example.rest.domain.request.CustomerRequest;
 import com.example.rest.service.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @RestController
@@ -23,13 +26,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDto> getCustomers() {
-        return customerService.getCustomers();
+    public Page<CustomerDto> getCustomers(Pageable pageable) {
+        return customerService.getCustomers(pageable);
     }
 
     @PostMapping
     public CustomerDto createCustomer(
-            @RequestBody CustomerRequest request
+            @NotNull @Valid @RequestBody CustomerRequest request
     ) {
         return customerService.createCustomer(request);
     }

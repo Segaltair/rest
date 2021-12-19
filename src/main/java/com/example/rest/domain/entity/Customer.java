@@ -1,6 +1,7 @@
 package com.example.rest.domain.entity;
 
-import com.example.rest.domain.entity.Product;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,11 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Customer {
     @Id
@@ -27,5 +31,6 @@ public class Customer {
     private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "customer")
-    private List<Product> products;
+    @Builder.Default
+    private List<Product> products = new ArrayList<>();
 }

@@ -1,6 +1,6 @@
-CREATE SCHEMA IF NOT EXISTS "REST";
+CREATE SCHEMA IF NOT EXISTS "rest";
 
-CREATE TABLE "REST"."customer"
+CREATE TABLE "rest"."customer"
 (
     "id" uuid PRIMARY KEY,
     "title"       varchar(255) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE "REST"."customer"
     "modified_at" timestamp    NULL
 );
 
-CREATE TABLE "REST"."product"
+CREATE TABLE "rest"."product"
 (
     "id" uuid PRIMARY KEY,
     "customer_id" uuid NOT NULL,
@@ -19,5 +19,5 @@ CREATE TABLE "REST"."product"
     "is_deleted"  boolean      NOT NULL,
     "created_at"  timestamp    NOT NULL,
     "modified_at" timestamp    NULL,
-    CONSTRAINT product_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES "REST".customer (id)
+    CONSTRAINT product_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES "rest".customer (id)
 );
